@@ -1,0 +1,26 @@
+version: "2"
+networks:
+    my-net:
+services:
+    server:
+        container_name: crawler-container
+        build: .
+        image: crawler-img
+        depends_on:
+            - db
+        ports:
+            - 3000:3000
+        networks:
+            - my-net
+        environment:
+            - DATABASE_URL=redis://crawler-db/
+            - HOST_ADDRESS=0.0.0.0
+            - HOST_PORT=3000
+            - URL_LIST_MAX_SIZE=50
+            - RUST_BACKTRACE=1
+            - IN_CONTAINER=TRUE
+    db:
+        container_name: crawler-db
+        image: redis
+        networks:
+            - my-net
