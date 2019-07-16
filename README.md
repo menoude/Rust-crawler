@@ -28,6 +28,7 @@ URL_LIST_MAX_SIZE="50"
 - `docker-compose up`
 
 There won't be any guaranteed persistence of your database with that method.
+The crawling speed should be slower when running this app in a container (probably because of multi-threading management)
 
 ### Endpoints
 
